@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface WeatherReportRepository extends JpaRepository<WeatherReport, Long> {
 
-    @Query("SELECT w.temperatureCelsius FROM WeatherReport w WHERE w.date BETWEEN :from AND :to")
+    @Query("SELECT w.temperatureCelsius FROM WeatherReport w WHERE w.postDate BETWEEN :from AND :to")
     List<Integer> getTemperatureByPeriod(final Date from,
                                          final Date to);
 

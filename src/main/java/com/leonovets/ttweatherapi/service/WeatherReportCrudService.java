@@ -1,18 +1,14 @@
 package com.leonovets.ttweatherapi.service;
 
 import com.leonovets.ttweatherapi.repository.entity.WeatherReport;
-
-import java.util.Date;
-import java.util.List;
+import com.leonovets.ttweatherapi.service.exception.NotFoundException;
 
 /**
  * @author Mikhail.Leonovets
  * @since 03/21/2023 - 14:56
  */
-public interface WeatherReportService {
+public interface WeatherReportCrudService {
     WeatherReport save(final WeatherReport weatherReport);
 
-    WeatherReport getCurrent();
-
-    List<WeatherReport> getByPeriod(final Date from, final Date to);
+    WeatherReport getLastWeatherReport(final String location) throws NotFoundException;
 }

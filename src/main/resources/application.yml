@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tt_weather_api_db
+    username: postgres
+    password: 1995
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          batch_size: 100
+        order_inserts: true
+    show-sql: true
+server:
+  port: 8080
+  rapid-api:
+    host: weatherapi-com.p.rapidapi.com
+    key: bdf2162473mshd4ce6dec7e4c2f5p129714jsnec1ea8dfe99e
+  weather:
+    monitoring:
+      default-location: Minsk Belarus

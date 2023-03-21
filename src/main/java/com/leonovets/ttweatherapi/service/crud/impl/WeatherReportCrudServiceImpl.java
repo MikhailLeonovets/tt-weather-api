@@ -1,10 +1,10 @@
-package com.leonovets.ttweatherapi.service.impl;
+package com.leonovets.ttweatherapi.service.crud.impl;
 
 import com.leonovets.ttweatherapi.repository.WeatherReportRepository;
 import com.leonovets.ttweatherapi.repository.entity.WeatherReport;
-import com.leonovets.ttweatherapi.service.ConditionCrudService;
-import com.leonovets.ttweatherapi.service.LocationCrudService;
-import com.leonovets.ttweatherapi.service.WeatherReportCrudService;
+import com.leonovets.ttweatherapi.service.crud.ConditionCrudService;
+import com.leonovets.ttweatherapi.service.crud.LocationCrudService;
+import com.leonovets.ttweatherapi.service.crud.WeatherReportCrudService;
 import com.leonovets.ttweatherapi.service.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

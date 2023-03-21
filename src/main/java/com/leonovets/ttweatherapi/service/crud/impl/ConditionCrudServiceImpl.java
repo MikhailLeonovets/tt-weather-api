@@ -1,8 +1,8 @@
-package com.leonovets.ttweatherapi.service.impl;
+package com.leonovets.ttweatherapi.service.crud.impl;
 
 import com.leonovets.ttweatherapi.repository.ConditionRepository;
 import com.leonovets.ttweatherapi.repository.entity.Condition;
-import com.leonovets.ttweatherapi.service.ConditionCrudService;
+import com.leonovets.ttweatherapi.service.crud.ConditionCrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

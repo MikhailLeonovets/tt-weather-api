@@ -2,7 +2,7 @@ package com.leonovets.ttweatherapi.controller;
 
 import com.leonovets.ttweatherapi.model.dto.WeatherReportDto;
 import com.leonovets.ttweatherapi.service.AverageTemperatureService;
-import com.leonovets.ttweatherapi.service.WeatherReportCrudService;
+import com.leonovets.ttweatherapi.service.crud.WeatherReportCrudService;
 import com.leonovets.ttweatherapi.service.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;

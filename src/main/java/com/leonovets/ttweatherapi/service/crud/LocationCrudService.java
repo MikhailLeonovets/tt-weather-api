@@ -1,4 +1,4 @@
-package com.leonovets.ttweatherapi.service;
+package com.leonovets.ttweatherapi.service.crud;
 
 import com.leonovets.ttweatherapi.repository.entity.Location;
 

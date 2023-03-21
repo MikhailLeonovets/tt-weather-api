@@ -1,8 +1,8 @@
-package com.leonovets.ttweatherapi.service.impl;
+package com.leonovets.ttweatherapi.service.crud.impl;
 
 import com.leonovets.ttweatherapi.repository.LocationRepository;
 import com.leonovets.ttweatherapi.repository.entity.Location;
-import com.leonovets.ttweatherapi.service.LocationCrudService;
+import com.leonovets.ttweatherapi.service.crud.LocationCrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

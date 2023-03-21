@@ -2,7 +2,7 @@ package com.leonovets.ttweatherapi.service.impl;
 
 import com.leonovets.ttweatherapi.service.WeatherApiComService;
 import com.leonovets.ttweatherapi.service.WeatherMonitorService;
-import com.leonovets.ttweatherapi.service.WeatherReportCrudService;
+import com.leonovets.ttweatherapi.service.crud.WeatherReportCrudService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

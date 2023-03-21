@@ -29,7 +29,7 @@ public class WeatherReportController {
     public ResponseEntity<?> getCurrentWeatherReport(@RequestParam(
             value = "location",
             required = false,
-            defaultValue = "Minsk Belarus") final String location) throws NotFoundException {
+            defaultValue = "Minsk") final String location) throws NotFoundException {
         return ResponseEntity.ok(WeatherReportDto.createFromEntity(weatherReportService.getLastWeatherReport(location)));
     }
 
@@ -37,7 +37,7 @@ public class WeatherReportController {
     public ResponseEntity<?> getWeatherAverageWeatherReport(
             @RequestParam(value = "from") @DateTimeFormat(pattern = "dd-MM-yyyy") final Date from,
             @RequestParam(value = "to") @DateTimeFormat(pattern = "dd-MM-yyyy") final Date to,
-            @RequestParam(value = "location", required = false, defaultValue = "Minsk Belarus") final String location) {
+            @RequestParam(value = "location", required = false, defaultValue = "Minsk") final String location) {
         return ResponseEntity.ok(averageTemperatureService.getAverageTemperaturesCelsiusForLocation(from, to, location));
     }
 }

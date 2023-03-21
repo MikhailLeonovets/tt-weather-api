@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Mikhail.Leonovets
@@ -19,7 +18,7 @@ public interface WeatherReportRepository extends JpaRepository<WeatherReport, Lo
     @Query("SELECT w FROM WeatherReport w "
             + "WHERE w.postDate = (SELECT MAX(w.postDate) FROM WeatherReport w) "
             + "AND w.location.name = :location")
-    Optional<WeatherReport> findNewestWeatherReportByLocation(final String location);
+    List<WeatherReport> findNewestWeatherReportByLocation(final String location);
 
     @Query("SELECT w.temperatureCelsius, w.postDate FROM WeatherReport w " +
             "WHERE w.location.name = :location " +

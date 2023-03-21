@@ -32,7 +32,7 @@ public class WeatherApiComServiceImpl implements WeatherApiComService {
     public WeatherReport getLastWeatherUpdateFromApi(final String location) {
         final HttpClient client = HttpClient.newHttpClient();
         final HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://weatherapi-com.p.rapidapi.com/current.json/?q=" + location))
+                .uri(URI.create("https://weatherapi-com.p.rapidapi.com/current.json?q=q%3DMinsk%20Belarus"))
                 .header("X-RapidAPI-Host", rapidApiProps.getHost())
                 .header("X-RapidAPI-Key", rapidApiProps.getKey())
                 .method(String.valueOf(HttpMethod.GET), HttpRequest.BodyPublishers.noBody())
@@ -48,6 +48,7 @@ public class WeatherApiComServiceImpl implements WeatherApiComService {
     }
 
     private WeatherReportDto deserializeWeatherReportFromResponse(final String json) {
+        log.warn(json);
         final JSONObject object = new JSONObject(json);
         final JSONObject currentNamedObject = object.getJSONObject("current");
         final JSONObject locationNamedObject = object.getJSONObject("location");
@@ -57,7 +58,7 @@ public class WeatherApiComServiceImpl implements WeatherApiComService {
         weatherReportDto.setAtmospherePressureHectopascal(currentNamedObject.getFloat("pressure_mb"));
         weatherReportDto.setAirHumidity(currentNamedObject.getInt("humidity"));
         weatherReportDto.setCondition(currentNamedObject.getJSONObject("condition").getString("text"));
-        weatherReportDto.setPostDate(new Date(currentNamedObject.getLong("last_updated_epoch")));
+        weatherReportDto.setPostDate(new Date(currentNamedObject.getLong("last_updated_epoch") * 1000L));
         weatherReportDto.setLocation(locationNamedObject.getString("name"));
         return weatherReportDto;
     }

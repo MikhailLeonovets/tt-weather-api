@@ -14,6 +14,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "server.weather.monitoring")
 public class WeatherMonitoringProps {
-    private String defaultLocation;
+    private String location;
 
 }

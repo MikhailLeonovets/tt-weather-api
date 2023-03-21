@@ -33,8 +33,8 @@ public class ScheduleWeatherMonitoringConfig implements SchedulingConfigurer {
     public void configureTasks(final ScheduledTaskRegistrar taskRegistrar) {
         taskRegistrar.setScheduler(taskExecutor());
         taskRegistrar.addTriggerTask(
-                () -> weatherMonitorService.doMonitoringForLocation(scheduleWeatherMonitoringProps.getDefaultLocation()),
-                new CronTrigger("0 0 * ? * *")
+                () -> weatherMonitorService.doMonitoringForLocation(scheduleWeatherMonitoringProps.getLocation()),
+                new CronTrigger("0 */5 * ? * *")
         );
     }
 }

@@ -33,7 +33,6 @@ public class WeatherReportDto {
         return this.getPostDate();
     }
 
-
     public WeatherReport buildWeatherReportFromDto() {
         final WeatherReport weatherReport = new WeatherReport();
         weatherReport.setTemperatureCelsius(temperatureCelsius);

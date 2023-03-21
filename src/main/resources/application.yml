@@ -21,4 +21,4 @@ server:
     key: bdf2162473mshd4ce6dec7e4c2f5p129714jsnec1ea8dfe99e
   weather:
     monitoring:
-      default-location: Minsk Belarus
+      location:

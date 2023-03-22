@@ -8,9 +8,11 @@ import com.leonovets.ttweatherapi.service.crud.WeatherReportCrudService;
 import com.leonovets.ttweatherapi.service.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -29,8 +31,8 @@ public class WeatherReportCrudServiceImpl implements WeatherReportCrudService {
     @Override
     public WeatherReport save(final WeatherReport weatherReport) {
         log.info("Saving weather report");
-        weatherReport.setLocation(locationCrudService.save(weatherReport.getLocation()));
-        weatherReport.setCondition(conditionCrudService.save(weatherReport.getCondition()));
+        weatherReport.setLocation(locationCrudService.saveOrReturnExisted(weatherReport.getLocation()));
+        weatherReport.setCondition(conditionCrudService.saveOrReturnExisted(weatherReport.getCondition()));
         return weatherReportRepository.save(weatherReport);
     }
 
@@ -45,5 +47,17 @@ public class WeatherReportCrudServiceImpl implements WeatherReportCrudService {
         return weatherReports.stream()
                 .max(Comparator.comparing(WeatherReport::getId))
                 .orElseThrow(NoSuchElementException::new);
+    }
+
+    @Override
+    public List<WeatherReport> getWeatherReportsByPeriodAndLocation(final Date from, final Date to, final String location)
+            throws NotFoundException {
+        final List<WeatherReport> reports = weatherReportRepository.getWeatherReportsByPeriodAndLocation(from, DateUtils.addMinutes(to,
+                1439), location);
+        if (reports.size() == 0) {
+            throw new NotFoundException(String.format("Weather reports not found for '%s' and these dates. " +
+                            "Cannot give average temperatures", location));
+        }
+        return reports;
     }
 }

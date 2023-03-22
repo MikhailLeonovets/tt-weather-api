@@ -7,7 +7,7 @@ import com.leonovets.ttweatherapi.repository.entity.Condition;
  * @since 03/21/2023 - 23:14
  */
 public interface ConditionCrudService {
-    Condition save(final Condition condition);
+    Condition saveOrReturnExisted(final Condition condition);
 
-    Condition save(final String name);
+    Condition saveOrReturnExisted(final String name);
 }

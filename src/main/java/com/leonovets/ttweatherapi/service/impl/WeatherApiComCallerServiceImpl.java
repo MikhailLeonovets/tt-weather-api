@@ -4,7 +4,8 @@ import static com.leonovets.ttweatherapi.model.constant.ConversionFactors.KILOME
 import com.leonovets.ttweatherapi.config.props.RapidApiProps;
 import com.leonovets.ttweatherapi.model.dto.WeatherReportDto;
 import com.leonovets.ttweatherapi.repository.entity.WeatherReport;
-import com.leonovets.ttweatherapi.service.WeatherApiComService;
+import com.leonovets.ttweatherapi.service.WeatherStateCallerService;
+import com.leonovets.ttweatherapi.service.exception.WeatherApiException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
@@ -25,14 +26,17 @@ import java.util.Date;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class WeatherApiComServiceImpl implements WeatherApiComService {
+public class WeatherApiComCallerServiceImpl implements WeatherStateCallerService {
     private final RapidApiProps rapidApiProps;
 
     @Override
     public WeatherReport getLastWeatherUpdateFromApi(final String location) {
+        final String[] cityAndCountry = location.split(" ");
+        final String uri = "https://weatherapi-com.p.rapidapi.com/current.json?q=q%3D"
+                + cityAndCountry[0] + "%20" + cityAndCountry[1];
         final HttpClient client = HttpClient.newHttpClient();
         final HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://weatherapi-com.p.rapidapi.com/current.json?q=q%3DMinsk%20Belarus"))
+                .uri(URI.create(uri))
                 .header("X-RapidAPI-Host", rapidApiProps.getHost())
                 .header("X-RapidAPI-Key", rapidApiProps.getKey())
                 .method(String.valueOf(HttpMethod.GET), HttpRequest.BodyPublishers.noBody())
@@ -42,8 +46,9 @@ public class WeatherApiComServiceImpl implements WeatherApiComService {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
             return deserializeWeatherReportFromResponse(response.body()).buildWeatherReportFromDto();
         } catch (IOException | InterruptedException e) {
-            log.warn("Could not retrieve weather state. Exception: " + e.getMessage());
-            throw new RuntimeException(e);
+            final String message = "Could not retrieve weather state. Exception: ";
+            log.warn(message + e.getMessage());
+            throw new WeatherApiException(message + e.getMessage());
         }
     }
 

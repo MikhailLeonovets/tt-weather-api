@@ -37,7 +37,7 @@ public class WeatherReportController {
     public ResponseEntity<?> getWeatherAverageWeatherReport(
             @RequestParam(value = "from") @DateTimeFormat(pattern = "dd-MM-yyyy") final Date from,
             @RequestParam(value = "to") @DateTimeFormat(pattern = "dd-MM-yyyy") final Date to,
-            @RequestParam(value = "location", required = false, defaultValue = "Minsk") final String location) {
+            @RequestParam(value = "location", required = false, defaultValue = "Minsk") final String location) throws NotFoundException {
         return ResponseEntity.ok(averageTemperatureService.getAverageTemperaturesCelsiusForLocation(from, to, location));
     }
 }

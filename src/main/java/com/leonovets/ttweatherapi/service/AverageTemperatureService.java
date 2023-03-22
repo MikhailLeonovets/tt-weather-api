@@ -1,6 +1,7 @@
 package com.leonovets.ttweatherapi.service;
 
-import com.leonovets.ttweatherapi.model.dto.AverageTemperaturesCelsiusDto;
+import com.leonovets.ttweatherapi.model.dto.AverageTemperatureCelsiusDto;
+import com.leonovets.ttweatherapi.service.exception.NotFoundException;
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +12,6 @@ import java.util.List;
  */
 public interface AverageTemperatureService {
 
-    List<AverageTemperaturesCelsiusDto> getAverageTemperaturesCelsiusForLocation(final Date from, final Date to, final String location);
+    List<AverageTemperatureCelsiusDto> getAverageTemperaturesCelsiusForLocation(final Date from, final Date to, final String location) throws NotFoundException;
 
 }

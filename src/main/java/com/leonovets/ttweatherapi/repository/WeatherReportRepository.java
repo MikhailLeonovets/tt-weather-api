@@ -20,10 +20,10 @@ public interface WeatherReportRepository extends JpaRepository<WeatherReport, Lo
             + "AND w.location.name = :location")
     List<WeatherReport> findNewestWeatherReportByLocation(final String location);
 
-    @Query("SELECT w.temperatureCelsius, w.postDate FROM WeatherReport w " +
+    @Query("SELECT w FROM WeatherReport w " +
             "WHERE w.location.name = :location " +
             "AND w.postDate BETWEEN :from AND :to")
-    List<WeatherReport> getTemperatureByPeriod(final Date from,
+    List<WeatherReport> getWeatherReportsByPeriodAndLocation(final Date from,
                                                final Date to,
                                                final String location);
 

@@ -16,12 +16,12 @@ public class LocationCrudServiceImpl implements LocationCrudService {
     private final LocationRepository locationRepository;
 
     @Override
-    public Location save(final Location location) {
-        return save(location.getName());
+    public Location saveOrReturnExisted(final Location location) {
+        return saveOrReturnExisted(location.getName());
     }
 
     @Override
-    public Location save(final String name) {
+    public Location saveOrReturnExisted(final String name) {
         return locationRepository.findByName(name).orElseGet(() -> locationRepository.save(new Location(name)));
     }
 }

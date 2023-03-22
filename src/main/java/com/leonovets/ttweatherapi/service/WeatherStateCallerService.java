@@ -6,7 +6,7 @@ import com.leonovets.ttweatherapi.repository.entity.WeatherReport;
  * @author Mikhail.Leonovets
  * @since 03/21/2023 - 17:39
  */
-public interface WeatherApiComService {
+public interface WeatherStateCallerService {
 
     WeatherReport getLastWeatherUpdateFromApi(final String location);
 

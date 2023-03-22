@@ -7,7 +7,7 @@ import com.leonovets.ttweatherapi.repository.entity.Location;
  * @since 03/21/2023 - 23:12
  */
 public interface LocationCrudService {
-    Location save(final Location location);
+    Location saveOrReturnExisted(final Location location);
 
-    Location save(final String name);
+    Location saveOrReturnExisted(final String name);
 }

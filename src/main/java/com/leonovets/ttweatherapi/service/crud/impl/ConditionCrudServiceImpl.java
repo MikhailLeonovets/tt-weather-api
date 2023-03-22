@@ -16,12 +16,12 @@ public class ConditionCrudServiceImpl implements ConditionCrudService {
     private final ConditionRepository conditionRepository;
 
     @Override
-    public Condition save(final Condition condition) {
-        return save(condition.getDescription());
+    public Condition saveOrReturnExisted(final Condition condition) {
+        return saveOrReturnExisted(condition.getDescription());
     }
 
     @Override
-    public Condition save(final String description) {
+    public Condition saveOrReturnExisted(final String description) {
         return conditionRepository.findByDescription(description).orElseGet(() -> conditionRepository.save(new Condition(description)));
     }
 }

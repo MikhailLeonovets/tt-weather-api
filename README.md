@@ -14,8 +14,7 @@ System which monitoring weather in needed location and able to send last updated
 * JUnit 5, Mockito
 
 # DB Scheme
-![image](https://user-images.githubusercontent.com/62715846/149124824-99e2385c-7df8-42a8-80c9-ea2c1e10affb.png)
-![image](https://user-images.githubusercontent.com/62715846/149124854-a4287da2-d8e0-4f23-a40d-e65244760db5.png)
+![photo_2023-03-22_23-13-48](https://user-images.githubusercontent.com/74506536/227030602-4f4d4048-e3a6-4db6-8312-7b2800d10b8b.jpg)
 
 # DB init
 1. To start your application you should create database with name 'tt_weather_api_db'.

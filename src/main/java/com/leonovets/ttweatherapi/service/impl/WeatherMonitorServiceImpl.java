@@ -20,6 +20,7 @@ public class WeatherMonitorServiceImpl implements WeatherMonitorService {
 
     @Override
     public void doMonitoringForLocation(final String location) {
+        log.info("weather monitoring executing for '{}'", location);
         weatherReportCrudService.save(weatherStateCallerService.getLastWeatherUpdateFromApi(location));
     }
 }

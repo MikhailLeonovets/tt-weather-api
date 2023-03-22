@@ -8,6 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
+ * Implements WeatherMonitorService {@link com.leonovets.ttweatherapi.service.WeatherMonitorService}.
+ * Contains dependencies {@link com.leonovets.ttweatherapi.service.crud.WeatherReportCrudService} using to store WeatherReports
+ * {@link com.leonovets.ttweatherapi.service.WeatherStateCallerService} to get current Weather State in needed location.
+ *
  * @author Mikhail.Leonovets
  * @since 03/21/2023 - 20:31
  */

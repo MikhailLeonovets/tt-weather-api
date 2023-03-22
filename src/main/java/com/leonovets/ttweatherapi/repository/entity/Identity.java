@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * MappedSuperclass for Entity Classes.
+ *
  * @author Mikhail.Leonovets
  * @since 03/21/2023 - 15:28
  */

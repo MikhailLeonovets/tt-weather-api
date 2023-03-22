@@ -11,6 +11,9 @@ import org.hibernate.Hibernate;
 import java.util.Objects;
 
 /**
+ * Entity to be stored in the Database and used as field for WeatherReport
+ * {@link com.leonovets.ttweatherapi.repository.entity.WeatherReport}.
+ *
  * @author Mikhail.Leonovets
  * @since 03/21/2023 - 17:25
  */
@@ -23,15 +26,20 @@ import java.util.Objects;
 public class Condition extends Identity {
     private String description;
 
+    /**
+     * Constructor exclude id.
+     *
+     * @param description is the Condition's filed to be populated
+     */
     public Condition(final String description) {
         this.description = description;
     }
 
     @Override
-    public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        final Condition condition = (Condition) o;
+    public boolean equals(final Object object) {
+        if (this == object) return true;
+        if (object == null || Hibernate.getClass(this) != Hibernate.getClass(object)) return false;
+        final Condition condition = (Condition) object;
         return getId() != null && Objects.equals(getId(), condition.getId());
     }
 

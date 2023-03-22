@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
+ * WeatherReport Service implements {@link com.leonovets.ttweatherapi.service.crud.WeatherReportCrudService}
+ * uses {@link com.leonovets.ttweatherapi.repository.WeatherReportRepository} as Repository to execute CRUD operations.
+ *
  * @author Mikhail.Leonovets
  * @since 03/21/2023 - 20:03
  */
@@ -55,8 +58,8 @@ public class WeatherReportCrudServiceImpl implements WeatherReportCrudService {
         final List<WeatherReport> reports = weatherReportRepository.getWeatherReportsByPeriodAndLocation(from, DateUtils.addMinutes(to,
                 1439), location);
         if (reports.size() == 0) {
-            throw new NotFoundException(String.format("Weather reports not found for '%s' and these dates. " +
-                            "Cannot give average temperatures", location));
+            throw new NotFoundException(String.format("Weather reports not found for '%s' and these dates. "
+                    + "Cannot give average temperatures", location));
         }
         return reports;
     }

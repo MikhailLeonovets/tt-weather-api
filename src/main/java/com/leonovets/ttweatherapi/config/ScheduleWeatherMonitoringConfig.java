@@ -14,6 +14,8 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 /**
+ * Schedule Server Configuration to start Weather Monitoring.
+ *
  * @author Mikhail.Leonovets
  * @since 03/21/2023 - 20:32
  */
@@ -24,6 +26,11 @@ public class ScheduleWeatherMonitoringConfig implements SchedulingConfigurer {
     private final WeatherMonitoringProps scheduleWeatherMonitoringProps;
     private final WeatherMonitorService weatherMonitorService;
 
+    /**
+     * Needed Executor bean to execute the task.
+     *
+     * @return {@link java.util.concurrent.Executor} - the newly created scheduled executor
+     */
     @Bean
     public Executor taskExecutor() {
         return Executors.newSingleThreadScheduledExecutor();

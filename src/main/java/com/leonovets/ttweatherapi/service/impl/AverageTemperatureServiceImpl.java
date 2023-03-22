@@ -19,6 +19,10 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
+ * AverageTemperatureService implements {@link com.leonovets.ttweatherapi.service.AverageTemperatureService}.
+ * Used to do needed calculations to get Average Temperatures Celsius by Dates
+ * using {@link com.leonovets.ttweatherapi.service.crud.WeatherReportCrudService}.
+ *
  * @author Mikhail.Leonovets
  * @since 03/21/2023 - 21:12
  */
@@ -37,6 +41,12 @@ public class AverageTemperatureServiceImpl implements AverageTemperatureService 
         return calculateAverageTemperature(groups);
     }
 
+    /**
+     * Grouping WeatherReports by Date.
+     *
+     * @param weatherReports to be grouped
+     * @return grouped weather reports by dates
+     */
     private Map<Date, List<WeatherReport>> groupWeatherReportsByDate(final List<WeatherReport> weatherReports) {
         final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return weatherReports.stream()
@@ -46,12 +56,18 @@ public class AverageTemperatureServiceImpl implements AverageTemperatureService 
                 .collect(Collectors.groupingBy(weatherReport -> {
                     try {
                         return simpleDateFormat.parse(simpleDateFormat.format(weatherReport.getPostDate()));
-                    } catch (final ParseException e) {
-                        throw new RuntimeException(e);
+                    } catch (final ParseException exception) {
+                        throw new RuntimeException(exception);
                     }
                 }));
     }
 
+    /**
+     * Calculates Average Temperatures by dates and creates DTOs for them.
+     *
+     * @param groups contains grouped weather reports by dates
+     * @return List of AveragesTemperatureCelsiusDto with needed information
+     */
     private List<AverageTemperatureCelsiusDto> calculateAverageTemperature(final Map<Date, List<WeatherReport>> groups) {
         final List<AverageTemperatureCelsiusDto> result = new ArrayList<>();
         for (final Map.Entry<Date, List<WeatherReport>> group : groups.entrySet()) {

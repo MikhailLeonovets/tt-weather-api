@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
+ * Location Service implements {@link com.leonovets.ttweatherapi.service.crud.LocationCrudService}
+ * uses {@link com.leonovets.ttweatherapi.repository.LocationRepository} as Repository to execute CRUD operations.
+ *
  * @author Mikhail.Leonovets
  * @since 03/21/2023 - 23:16
  */

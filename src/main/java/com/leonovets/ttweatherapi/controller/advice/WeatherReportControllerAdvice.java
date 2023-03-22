@@ -8,15 +8,25 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
+ * Controller Advice to catch any NotFoundException {@link com.leonovets.ttweatherapi.service.exception.NotFoundException}
+ * thrown by the application.
+ *
  * @author Mikhail.Leonovets
  * @since 03/22/2023 - 16:56
  */
 @Slf4j
 @ControllerAdvice
 public class WeatherReportControllerAdvice {
+    /**
+     * Method to catch any NotFoundException {@link com.leonovets.ttweatherapi.service.exception.NotFoundException}
+     * thrown by the application.
+     *
+     * @param exception NotFound Exception to be caught
+     * @return ResponseEntity with 404 HttpStatus and exception message in the body
+     */
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<?> handleNotFoundException(final NotFoundException e) {
-        log.warn(e.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    public ResponseEntity<?> handleNotFoundException(final NotFoundException exception) {
+        log.warn(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 }

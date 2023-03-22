@@ -1,6 +1,7 @@
 package com.leonovets.ttweatherapi.service.impl;
 
 import static com.leonovets.ttweatherapi.model.constant.ConversionFactors.KILOMETERS_TO_METERS_FACTOR;
+import static com.leonovets.ttweatherapi.model.constant.ConversionFactors.SECOND_TO_MILLISECONDS_FACTOR;
 import com.leonovets.ttweatherapi.config.props.RapidApiProps;
 import com.leonovets.ttweatherapi.model.dto.WeatherReportDto;
 import com.leonovets.ttweatherapi.repository.entity.WeatherReport;
@@ -20,6 +21,9 @@ import java.net.http.HttpResponse;
 import java.util.Date;
 
 /**
+ * WeatherApiComCallerServiceImpl implements {@link com.leonovets.ttweatherapi.service.WeatherStateCallerService}.
+ * Using Weather Api via Rapid Api.
+ *
  * @author Mikhail.Leonovets
  * @since 03/21/2023 - 17:39
  */
@@ -41,17 +45,23 @@ public class WeatherApiComCallerServiceImpl implements WeatherStateCallerService
                 .header("X-RapidAPI-Key", rapidApiProps.getKey())
                 .method(String.valueOf(HttpMethod.GET), HttpRequest.BodyPublishers.noBody())
                 .build();
-        HttpResponse<String> response;
+        final HttpResponse<String> response;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
             return deserializeWeatherReportFromResponse(response.body()).buildWeatherReportFromDto();
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException | InterruptedException exception) {
             final String message = "Could not retrieve weather state. Exception: ";
-            log.warn(message + e.getMessage());
-            throw new WeatherApiException(message + e.getMessage());
+            log.warn(message + exception.getMessage());
+            throw new WeatherApiException(message + exception.getMessage());
         }
     }
 
+    /**
+     * Deserializes WeatherReportDto from incoming json via rapid api.
+     *
+     * @param json to be deserialized
+     * @return deserialized WeatherReportDto
+     */
     private WeatherReportDto deserializeWeatherReportFromResponse(final String json) {
         log.warn(json);
         final JSONObject object = new JSONObject(json);
@@ -63,7 +73,7 @@ public class WeatherApiComCallerServiceImpl implements WeatherStateCallerService
         weatherReportDto.setAtmospherePressureHectopascal(currentNamedObject.getFloat("pressure_mb"));
         weatherReportDto.setAirHumidity(currentNamedObject.getInt("humidity"));
         weatherReportDto.setCondition(currentNamedObject.getJSONObject("condition").getString("text"));
-        weatherReportDto.setPostDate(new Date(currentNamedObject.getLong("last_updated_epoch") * 1000L));
+        weatherReportDto.setPostDate(new Date(currentNamedObject.getLong("last_updated_epoch") * SECOND_TO_MILLISECONDS_FACTOR));
         weatherReportDto.setLocation(locationNamedObject.getString("name"));
         return weatherReportDto;
     }

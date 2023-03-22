@@ -15,6 +15,8 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
+ * Entity to be stored in the Database. Contains information fields for the weather state in that Date
+ *
  * @author Mikhail.Leonovets
  * @since 03/20/2023 - 22:48
  */
@@ -38,10 +40,10 @@ public class WeatherReport extends Identity {
     private Date postDate;
 
     @Override
-    public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        final WeatherReport that = (WeatherReport) o;
+    public boolean equals(final Object object) {
+        if (this == object) return true;
+        if (object == null || Hibernate.getClass(this) != Hibernate.getClass(object)) return false;
+        final WeatherReport that = (WeatherReport) object;
         return getId() != null && Objects.equals(getId(), that.getId());
     }
 

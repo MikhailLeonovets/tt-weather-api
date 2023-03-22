@@ -5,7 +5,7 @@
 * [DB init](#db-init)
 
 # Project Description
-System which monitoring weather in needed location and able to send last updated weather state, and 
+System which monitoring weather in needed location and able to send last updated weather state, and average temperature by dates.
 
 # Technologies used
 * Spring, Spring Boot, Spring Data JPA
